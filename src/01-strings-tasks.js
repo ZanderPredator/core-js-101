@@ -236,7 +236,37 @@ function getRectangleString( /* width, height */ ) {
  *
  */
 function encodeToRot13( /* str */ ) {
-    throw new Error('Not implemented');
+    let result = '';
+
+    let array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    ];
+    let bigArray = [];
+    array.forEach(item => bigArray.push(item.toUpperCase()))
+
+
+    let change = arguments[0].split('');
+
+    for (let i = 0; i < change.length; i++) {
+        if (change[i] == ' ' || change[i] == '!' || change[i] == '?') {
+            result += change[i]
+        };
+        if (array.includes(change[i]) && (array.indexOf(change[i]) <= 12)) {
+            let position = array.indexOf(change[i]);
+            result += array[(position + 13)]
+        } else if (array.includes(change[i]) && array.indexOf(change[i]) >= 13) {
+            let position = array.indexOf(change[i]);
+            result += array[(position - 13)]
+        } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) <= 12)) {
+            let position = bigArray.indexOf(change[i]);
+            result += bigArray[(position + 13)]
+        } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) >= 13)) {
+            let position = bigArray.indexOf(change[i]);
+            result += bigArray[(position - 13)]
+        }
+    }
+    return result
+
 }
 
 /**
