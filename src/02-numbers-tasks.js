@@ -89,18 +89,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  */
 
 function getLinearEquationRoot(a, b) {
-  let x = 1;
-  if (a === 1 || a === null) {
-    x = -b;
-  }
-
-  while (a * x - b !== 0) {
-    if (a * x - b === 0) {
-      break;
-    }
-    x += 1;
-  }
-  return x;
+  return (a + b);
 }
 
 
