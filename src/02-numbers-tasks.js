@@ -19,8 +19,8 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(/* width, height */) {
-  return arguments[0] * arguments[1]
+function getRectangleArea( /* width, height */ ) {
+    return arguments[0] * arguments[1]
 }
 
 
@@ -35,8 +35,8 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  return arguments[0] * 2* Math.PI;
+function getCircleCircumference( /* radius */ ) {
+    return arguments[0] * 2 * Math.PI;
 }
 
 /**
@@ -51,8 +51,8 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  return arguments[0] + arguments[1]
+function getAverage( /* value1, value2 */ ) {
+    return arguments[0] + arguments[1]
 }
 
 /**
@@ -70,8 +70,8 @@ function getAverage(/* value1, value2 */) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2))
 }
 
 /**
@@ -87,19 +87,19 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   5*x = 0         => 0
  */
 
-function getLinearEquationRoot(/* a, b */) {
-  let x = 1;
-  if(a == 1 || a == null){
-    x = -b;
-  };
+function getLinearEquationRoot( /* a, b */ ) {
+    let x = 1;
+    if (a == 1 || a == null) {
+        x = -b;
+    };
 
-  while(arguments[0]*x - b != 0){
-    if(arguments[0]*x - b == 0){
-      break;
+    while (arguments[0] * x - b != 0) {
+        if (arguments[0] * x - b == 0) {
+            break;
+        }
+        x++
     }
-    x++
-  }
-  return x
+    return x
 }
 
 
@@ -121,8 +121,7 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-}
+function getAngleBetweenVectors( /* x1, y1, x2, y2 */ ) {}
 
 /**
  * Returns a last digit of a integer number.
@@ -136,8 +135,8 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit( value ) {
-  return +value.toString().at(-1)
+function getLastDigit(value) {
+    return +value.toString().at(-1)
 }
 
 
@@ -152,8 +151,8 @@ function getLastDigit( value ) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  return Number(arguments[0])
+function parseNumberFromString( /* value */ ) {
+    return Number(arguments[0])
 }
 
 /**
@@ -169,8 +168,8 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal( a, b, c ) {
-  return Math.sqrt(Math.pow(a,2)+Math.pow(b,2)+Math.pow(c,2))
+function getParallelepipedDiagonal(a, b, c) {
+    return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2))
 }
 
 
@@ -191,8 +190,13 @@ function getParallelepipedDiagonal( a, b, c ) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+    let textNum = num.toString().slice(0, this.length - pow);
+    while (textNum.length != 4) {
+        textNum = textNum + '0'
+    }
+    return +textNum
+
 }
 
 /**
@@ -212,8 +216,11 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+    for (let i = 2; i < n; i++) {
+        if (n % i == 0) return false;
+        else return true
+    }
 }
 
 /**
@@ -231,21 +238,26 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+    let result = parseInt(value);
+    if (result != NaN) {
+        return result;
+    } else {
+        return def;
+    }
 }
 
 module.exports = {
-  getRectangleArea,
-  getCircleCircumference,
-  getAverage,
-  getDistanceBetweenPoints,
-  getLinearEquationRoot,
-  getAngleBetweenVectors,
-  getLastDigit,
-  parseNumberFromString,
-  getParallelepipedDiagonal,
-  roundToPowerOfTen,
-  isPrime,
-  toNumber,
+    getRectangleArea,
+    getCircleCircumference,
+    getAverage,
+    getDistanceBetweenPoints,
+    getLinearEquationRoot,
+    getAngleBetweenVectors,
+    getLastDigit,
+    parseNumberFromString,
+    getParallelepipedDiagonal,
+    roundToPowerOfTen,
+    isPrime,
+    toNumber,
 };
