@@ -18,12 +18,8 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings( /* value1, value2 */ ) {
-    let result = '';
-    for (let i of arguments) {
-        result += i
-    }
-    return i
+function concatenateStrings(value1, value2) {
+  return value1 + value2;
 }
 
 
@@ -38,8 +34,8 @@ function concatenateStrings( /* value1, value2 */ ) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength( /* value */ ) {
-    return arguments[0].length;
+function getStringLength(value) {
+  return value.length;
 }
 
 /**
@@ -55,8 +51,8 @@ function getStringLength( /* value */ ) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate( /* firstName, lastName */ ) {
-    return `Hello, ${arguments[0]} ${arguments[1]}!`
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -69,10 +65,10 @@ function getStringFromTemplate( /* firstName, lastName */ ) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate( /* value */ ) {
-    let array = arguments[0].split(' ').slice(1).join(' ');
-    array = array.replace('!', '');
-    return array;
+function extractNameFromTemplate(value) {
+  let array = value.split(' ').slice(1).join(' ');
+  array = array.replace('!', '');
+  return array;
 }
 
 
@@ -86,8 +82,8 @@ function extractNameFromTemplate( /* value */ ) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar( /* value */ ) {
-    return arguments[0][0].toUpperCase();
+function getFirstChar(value) {
+  return value[0];
 }
 
 /**
@@ -101,8 +97,8 @@ function getFirstChar( /* value */ ) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces( /* value */ ) {
-    return arguments[0].trim();
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
 }
 
 /**
@@ -116,12 +112,12 @@ function removeLeadingAndTrailingWhitespaces( /* value */ ) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString( /* value, count */ ) {
-    let text = '';
-    for (let i = 0; i < arguments[1]; i++) {
-        text += arguments[0];
-    }
-    return text;
+function repeatString(value, count) {
+  let text = '';
+  for (let i = 0; i < count; i += 1) {
+    text += value;
+  }
+  return text;
 }
 
 /**
@@ -136,8 +132,8 @@ function repeatString( /* value, count */ ) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences( /* str, value */ ) {
-    return arguments[0].replace(arguments[1], '');
+function removeFirstOccurrences(str, value) {
+  return str.replace(value, '');
 }
 
 /**
@@ -151,10 +147,10 @@ function removeFirstOccurrences( /* str, value */ ) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag( /* str */ ) {
-    let arr = arguments[0].replace('<', '');
-    arr = arr.replace('>', '');
-    return arr;
+function unbracketTag(str) {
+  let arr = str.replace('<', '');
+  arr = arr.replace('>', '');
+  return arr;
 }
 
 
@@ -168,8 +164,8 @@ function unbracketTag( /* str */ ) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase( /* str */ ) {
-    return arguments[0].split('').map(item => item.toUpperCase()).join('');
+function convertToUpperCase(str) {
+  return str.split('').map((item) => item.toUpperCase()).join('');
 }
 
 /**
@@ -187,9 +183,9 @@ function convertToUpperCase( /* str */ ) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails( /* str */ ) {
-    return arguments[0].split(';')
-};
+function extractEmails(str) {
+  return str.split(';');
+}
 
 /**
  * Returns the string representation of rectangle with specified width and height
@@ -214,7 +210,7 @@ function extractEmails( /* str */ ) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString( /* width, height */ ) {
+function getRectangleString(/* width, height */) {
 
 }
 
@@ -235,38 +231,36 @@ function getRectangleString( /* width, height */ ) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13( /* str */ ) {
-    let result = '';
+function encodeToRot13(str) {
+  let result = '';
 
-    let array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-    ];
-    let bigArray = [];
-    array.forEach(item => bigArray.push(item.toUpperCase()))
+  const array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+  ];
+  const bigArray = [];
+  array.forEach((item) => bigArray.push(item.toUpperCase()));
 
+  const change = str.split('');
 
-    let change = arguments[0].split('');
-
-    for (let i = 0; i < change.length; i++) {
-        if (change[i] == ' ' || change[i] == '!' || change[i] == '?') {
-            result += change[i]
-        };
-        if (array.includes(change[i]) && (array.indexOf(change[i]) <= 12)) {
-            let position = array.indexOf(change[i]);
-            result += array[(position + 13)]
-        } else if (array.includes(change[i]) && array.indexOf(change[i]) >= 13) {
-            let position = array.indexOf(change[i]);
-            result += array[(position - 13)]
-        } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) <= 12)) {
-            let position = bigArray.indexOf(change[i]);
-            result += bigArray[(position + 13)]
-        } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) >= 13)) {
-            let position = bigArray.indexOf(change[i]);
-            result += bigArray[(position - 13)]
-        }
+  for (let i = 0; i < change.length; i += 1) {
+    if (change[i] === ' ' || change[i] === '!' || change[i] === '?') {
+      result += change[i];
     }
-    return result
-
+    if (array.includes(change[i]) && (array.indexOf(change[i]) <= 12)) {
+      const position = array.indexOf(change[i]);
+      result += array[(position + 13)];
+    } else if (array.includes(change[i]) && array.indexOf(change[i]) >= 13) {
+      const position = array.indexOf(change[i]);
+      result += array[(position - 13)];
+    } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) <= 12)) {
+      const position = bigArray.indexOf(change[i]);
+      result += bigArray[(position + 13)];
+    } else if (bigArray.includes(change[i]) && (bigArray.indexOf(change[i]) >= 13)) {
+      const position = bigArray.indexOf(change[i]);
+      result += bigArray[(position - 13)];
+    }
+  }
+  return result;
 }
 
 /**
@@ -282,9 +276,9 @@ function encodeToRot13( /* str */ ) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString( /* value */ ) {
-    let variable = arguments[0];
-    return (typeof variable === 'string')
+function isString(value) {
+  const variable = value;
+  return (typeof variable === 'string');
 }
 
 
@@ -312,33 +306,32 @@ function isString( /* value */ ) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId( /* value */ ) {
-    let array = [
-        'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
-        'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
-        'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
-        'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'
-    ];
+function getCardId(value) {
+  const array = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
 
-    return array.indexOf(arguments[0])
-
+  return array.indexOf(value);
 }
 
 
 module.exports = {
-    concatenateStrings,
-    getStringLength,
-    getStringFromTemplate,
-    extractNameFromTemplate,
-    getFirstChar,
-    removeLeadingAndTrailingWhitespaces,
-    repeatString,
-    removeFirstOccurrences,
-    unbracketTag,
-    convertToUpperCase,
-    extractEmails,
-    getRectangleString,
-    encodeToRot13,
-    isString,
-    getCardId,
+  concatenateStrings,
+  getStringLength,
+  getStringFromTemplate,
+  extractNameFromTemplate,
+  getFirstChar,
+  removeLeadingAndTrailingWhitespaces,
+  repeatString,
+  removeFirstOccurrences,
+  unbracketTag,
+  convertToUpperCase,
+  extractEmails,
+  getRectangleString,
+  encodeToRot13,
+  isString,
+  getCardId,
 };
