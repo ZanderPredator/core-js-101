@@ -436,8 +436,14 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount( /* arr */ ) {
-    throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+    let result = 0;
+    for (let i of arr) {
+        if (!Boolean(i)) {
+            result++
+        }
+    }
+    return result
 }
 
 /**
@@ -454,8 +460,15 @@ function getFalsyValuesCount( /* arr */ ) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences( /* arr, item */ ) {
-    throw new Error('Not implemented');
+
+function findAllOccurrences(arr, item) {
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === item) {
+            count++
+        }
+    }
+    return count;
 }
 
 /**
@@ -469,8 +482,8 @@ function findAllOccurrences( /* arr, item */ ) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList( /* arr */ ) {
-    throw new Error('Not implemented');
+function toStringList(arr) {
+    return arr.toString()
 }
 
 
