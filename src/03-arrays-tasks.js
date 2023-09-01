@@ -628,8 +628,32 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group( /* array, keySelector, valueSelector */ ) {
-    throw new Error('Not implemented');
+
+
+
+//  задача интересная, но нужно болье объясенний.
+//  вывод всех значений ... Какой в этом смысл?? 
+
+function group(array, keySelector, valueSelector) {
+    let arr = array.sort((a, b) => a.country.localeCompare(b.country));
+    let map = new Map();
+
+
+    let country = [];
+    for (let i of arr) {
+        country.push(i.country)
+    };
+    let set = new Set(country);
+    country = Array.from(set);
+
+    for (let i = 0; i < country.length; i++) {
+        let city = arr.filter((item) => item.country == country[i])
+        city.sort((a, b) => a.city.localeCompare(b.city));
+        map.set(country[i], city)
+    }
+
+    return Array.from(map)
+
 }
 
 
@@ -646,8 +670,13 @@ function group( /* array, keySelector, valueSelector */ ) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany( /* arr, childrenSelector */ ) {
-    throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+    let ap = arr.flat();
+    let l;
+    for (let i of ap) {
+        l = childrenSelector(i)
+    }
+    return l;
 }
 
 
@@ -663,8 +692,17 @@ function selectMany( /* arr, childrenSelector */ ) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes( /* arr, indexes */ ) {
-    throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+
+    let array = arr;
+
+    for (let i = 0; i < indexes.length; i++) {
+        array = array[indexes[i]];
+    };
+
+    return array
+
+
 }
 
 
