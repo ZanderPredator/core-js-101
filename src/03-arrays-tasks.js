@@ -293,13 +293,14 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  let array = [];
-  arr.forEach((item, index) => {
+  const array = [];
+  const arr1 = arr;
+  arr1.forEach((item, index) => {
     if (index % 2 === 0) {
       array.push(item);
     }
   });
-  return array
+  return array;
 }
 
 
@@ -431,7 +432,7 @@ function getItemsSum(arr) {
  */
 function getFalsyValuesCount(arr) {
   let result = 0;
-  for (let i = 0; i < arr.length; i = i + 1) {
+  for (let i = 0; i < arr.length; i += 1) {
     if (!i) {
       result += 1;
     }
@@ -626,8 +627,7 @@ function distinct(arr) {
 //  задача интересная, но нужно болье объясенний.
 //  вывод всех значений ... Какой в этом смысл??
 
-function group(array, keySelector, valueSelector) {
-
+function group() {
 
 }
 
@@ -646,7 +646,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-
+  return arr[childrenSelector];
 }
 
 
