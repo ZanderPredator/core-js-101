@@ -278,7 +278,7 @@ function encodeToRot13(str) {
  */
 function isString(value) {
   const variable = value;
-  if (typeof variable === 'string') {
+  if (typeof variable === 'string' || value instanceof String) {
     return true;
   }
   return false;

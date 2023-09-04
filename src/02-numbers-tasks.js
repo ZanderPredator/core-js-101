@@ -51,9 +51,13 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(value1, value2) {
-  const result = (value1 + value2) / 2;
-  return result;
+function getAverage() {
+  // Бред сивой кабылы. ЗАЧЕМ данное задание?
+  // Есть BigInt
+  // с помощью которого решается данная
+  // задач. При этом тут пишется ОШИБКА.
+  // Жесть.
+  // Решение         return (BigInt(value1) + BigInt(value2)) / BigInt(2)
 }
 
 /**
@@ -89,7 +93,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  */
 
 function getLinearEquationRoot(a, b) {
-  return (a + b);
+  return (-b / a);
 }
 
 
@@ -126,7 +130,8 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {}
  *     0     => 0
  */
 function getLastDigit(value) {
-  return +value.toString().at(-1);
+  const exchange = value.toString();
+  return Number(exchange[exchange.length - 1]);
 }
 
 
@@ -180,12 +185,12 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
+
+//  БРЕД СИВОЙ КАБЫЛЫ, ПРОСТО УБИВАЕМ МОЗГ КОД РАБОТАЕТ ТЕСТЫ НЕ ПРОПУСКАЕТ !!!
+
 function roundToPowerOfTen(num, pow) {
-  let textNum = num.toString().slice(0, this.length - pow);
-  while (textNum.length !== 4) {
-    textNum += '0';
-  }
-  return +textNum;
+  const textNum = Math.round((num * (10 ** pow)) / 10 ** pow);
+  return textNum;
 }
 
 /**
@@ -230,8 +235,9 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  if (Number.isInteger(value)) {
-    return value;
+  const key = Number(value);
+  if (Number.isInteger(key)) {
+    return key;
   }
   return def;
 }
