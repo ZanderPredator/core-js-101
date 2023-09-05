@@ -77,8 +77,8 @@ function doubleArray(arr) {
 function getArrayOfPositives(arr) {
   const array = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (i > 0) {
-      array.push(i);
+    if (arr[i] > 0) {
+      array.push(arr[i]);
     }
   }
   return array;
@@ -98,8 +98,8 @@ function getArrayOfPositives(arr) {
 function getArrayOfStrings(arr) {
   const array = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (typeof i === 'string') {
-      array.push(i);
+    if (typeof arr[i] === 'string') {
+      array.push(arr[i]);
     }
   }
   return array;
@@ -121,8 +121,8 @@ function getArrayOfStrings(arr) {
 function removeFalsyValues(arr) {
   const array = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (i) {
-      array.push(i);
+    if (arr[i]) {
+      array.push(arr[i]);
     }
   }
   return array;
@@ -142,7 +142,7 @@ function removeFalsyValues(arr) {
 function getUpperCaseStrings(arr) {
   const array = [];
   for (let i = 0; i < arr.length; i += 1) {
-    array.push(i.toUpperCase());
+    array.push(arr[i].toUpperCase());
   }
   return array;
 }
@@ -161,7 +161,7 @@ function getUpperCaseStrings(arr) {
 function getStringsLength(arr) {
   const array = [];
   for (let i = 0; i < arr.length; i += 1) {
-    array.push(i.length);
+    array.push(arr[i].length);
   }
   return array;
 }
@@ -209,7 +209,7 @@ function getHead(arr, n) {
  */
 function getTail(arr, n) {
   const array = arr.reverse();
-  return array.slice(0, n);
+  return array.slice(0, n).reverse();
 }
 
 
@@ -238,7 +238,10 @@ function toCsvText(arr) {
   arr.forEach((item) => {
     text += `${item.toString()}\n`;
   });
-  return text;
+  let array = text.split('');
+  array.pop();
+  array = array.join('');
+  return array;
 }
 
 /**
@@ -275,7 +278,7 @@ function getMovingSum(arr) {
   const array = [];
   let sum = 0;
   for (let i = 0; i < arr.length; i += 1) {
-    sum += i;
+    sum += arr[i];
     array.push(sum);
   }
   return array;
@@ -296,7 +299,7 @@ function getSecondItems(arr) {
   const array = [];
   const arr1 = arr;
   arr1.forEach((item, index) => {
-    if (index % 2 === 0) {
+    if (index % 2 !== 0) {
       array.push(item);
     }
   });
@@ -319,18 +322,14 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  if (arr.length === 0 || arr.length === 1) {
-    return arr;
-  }
-
   const array = [];
-
   for (let i = 0; i < arr.length; i += 1) {
     if (i === 0) {
       array.push(arr[i]);
-    }
-    for (let j = 0; j <= i; j += 1) {
-      array.push(arr[i]);
+    } else {
+      for (let j = 0; j <= i; j += 1) {
+        array.push(arr[i]);
+      }
     }
   }
   return array;
@@ -369,6 +368,9 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
   const array = arr.filter((item) => typeof item === 'number');
   return Math.max(...array);
 }
@@ -387,18 +389,18 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
+  if (arr.length === 0) {
+    return arr;
+  }
   const array = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
   const result = [];
-  let j = 1;
   for (let i = 0; i < arr.length; i += 1) {
-    const index = array.indexOf(i);
-    if (result[index] === i) {
-      result[index + j] = i;
-      j += 1;
+    const index = array.indexOf(arr[i]);
+    if (result[index] === arr[i]) {
+      result.splice(index, 0, arr[i]);
     }
-    result[index] = i;
+    result[index] = arr[i];
   }
-
   return result.filter((item) => typeof item === 'string');
 }
 
@@ -433,7 +435,7 @@ function getItemsSum(arr) {
 function getFalsyValuesCount(arr) {
   let result = 0;
   for (let i = 0; i < arr.length; i += 1) {
-    if (!i) {
+    if (!arr[i]) {
       result += 1;
     }
   }
@@ -507,19 +509,41 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
+
+
+// Гений!) сортировка по имени в задании а в итоге по числам в строке)! МОЗГ!)
+// Что ещё можно добавить? Странно что дополнительных строк не было, например бананы и ещё дописать
+//  сортировка по бананам не явная обязательно.
 function sortCitiesArray(arr) {
+  // сортирую массив по стране
   const array = arr.sort((a, b) => a.country.localeCompare(b.country));
+  // создаю сет
   const set = new Set();
+  // цикл по которому добавляю в сет страны их будет в данном примере 3
+  // set уберет повторения
   for (let i = 0; i < array.length; i += 1) {
-    set.add(i.country);
+    set.add(arr[i].country);
   }
+
+  // чтобы работать дальше переводим наш сет в массив по нему будем и работать
   const changeArr = Array.from(set);
+  // создаем основной массив в который будет складывать отсортиров. элементы
+  // по странам, потом берем данный массив объектов и сортируем их по городам
+  // записываем в result;
+
   const result = [];
+  // стандартный цикл
   for (let i = 0; i < changeArr.length; i += 1) {
+    // беру временный массив в который записываю массив объектов по стране
     const ar = array.filter((item) => item.country === changeArr[i]);
+    // дальше его сортирую по городам
     ar.sort((a, b) => a.city.localeCompare(b.city));
+    // и закидываю в array
     result.push(ar);
+    // ну и так в принципе все.
   }
+  // расспаковываю своим массивы объектов!)
+  //  2 часа работы! На работе не работал!)
   return result.flat();
 }
 
@@ -645,8 +669,12 @@ function group() {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
+
+// Решение крутое)! Только не работает.
+//  Идея просто крута (!)
 function selectMany(arr, childrenSelector) {
-  return arr[childrenSelector];
+  const array = arr.map(childrenSelector);
+  return [...array];
 }
 
 
