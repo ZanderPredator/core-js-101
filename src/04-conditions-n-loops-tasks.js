@@ -27,9 +27,11 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-
-
+function getFizzBuzz(num) {
+  if (num % 3 === 0 && num % 5 === 0) { return 'FizzBuzz'; }
+  if (num % 3 === 0) { return 'Fizz'; }
+  if (num % 5 === 0) { return 'Buzz'; }
+  return num;
 }
 
 
@@ -44,9 +46,14 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-
-
+function getFactorial(n) {
+  let result = 1;
+  let nn = n;
+  while (nn >= 1) {
+    result *= nn;
+    nn -= 1;
+  }
+  return result;
 }
 
 
@@ -62,9 +69,13 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
+function getSumBetweenNumbers(n1, n2) {
+  let result = null;
 
-
+  for (let i = n1; i <= n2; i += 1) {
+    result += i;
+  }
+  return result;
 }
 
 
@@ -83,9 +94,16 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-
-
+function isTriangle(a, b, c) {
+  const array = [a, b, c];
+  const maxValue = Math.max(...array);
+  const index = array.indexOf(maxValue);
+  array.splice(index, 1);
+  const sum = array.reduce((cur, item) => cur + item, 0);
+  if (sum > maxValue) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -170,7 +188,21 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
+function findFirstSingleChar(str) {
+  // Решение которое не пропускает JS
+  // Берем букву если она есть ещё в тексте то стираем ее, НЕ ПРОПУСКАЕТ ТЕСТЫ
+  // let text = str;
+  // for (let i = 0; i < text.length; i += 1) {
+  //   if (text.includes(text[i], i)) {
+  //     text = text.replaceAll(text[i], '');
+  //   }
+  // }
+  // if (text.length === 0) {
+  //   return null;
+  // }
+  // return text[0];
+
+
 
 
 }
