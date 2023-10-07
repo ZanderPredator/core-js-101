@@ -189,22 +189,24 @@ function isInsideCircle(/* circle, point */) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  // Решение которое не пропускает JS
-  // Берем букву если она есть ещё в тексте то стираем ее, НЕ ПРОПУСКАЕТ ТЕСТЫ
-  // let text = str;
-  // for (let i = 0; i < text.length; i += 1) {
-  //   if (text.includes(text[i], i)) {
-  //     text = text.replaceAll(text[i], '');
-  //   }
-  // }
-  // if (text.length === 0) {
-  //   return null;
-  // }
-  // return text[0];
+  const obj = {};
+  for (let i = 0; i < str.length; i += 1) {
+    if (obj[str[i]]) {
+      obj[str[i]] += 1;
+    } else {
+      obj[str[i]] = 1;
+    }
+  }
 
+  // Записываем в объект значение. Т.к. значение не идут по порядку как в array
+  // проверяем относительно строки
 
-
-
+  for (let i = 0; i < str.length; i += 1) {
+    if (obj[str[i]] === 1) {
+      return str[i];
+    }
+  }
+  return null;
 }
 
 
@@ -230,9 +232,25 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const array = [a, b];
+  array.sort((c, d) => c - d);
+  let first;
+  let last;
 
+  if (isStartIncluded === true) {
+    first = '[';
+  } else {
+    first = '(';
+  }
 
+  if (isEndIncluded === true) {
+    last = ']';
+  } else {
+    last = ')';
+  }
+
+  return (`${first + array[0]}, ${array[1]}${last}`);
 }
 
 
@@ -248,9 +266,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-
-
+function reverseString(str) {
+  return Array.from(str).reverse().join('');
 }
 
 
@@ -266,9 +283,10 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-
-
+function reverseInteger(num) {
+  const textNum = num.toString();
+  const result = Array.from(textNum).reverse().join('');
+  return Number(result);
 }
 
 
@@ -292,9 +310,25 @@ function reverseInteger(/* num */) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
+function isCreditCardNumber(ccn) {
+  const array = Array.from(ccn.toString());
 
+  const reverseArray = Number(array.pop());
 
+  for (let i = 0; i < array.length; i += 1) {
+    if (i % 2 === 0) {
+      array[i] *= 2;
+    }
+  }
+
+  const result = array.reduce((digit, current) => digit + Number(current), 0);
+
+  const formula = ((array.length) - Math.ceil(result / (array.length)));
+
+  if (formula === reverseArray) {
+    return true;
+  }
+  return false;
 }
 
 /**
