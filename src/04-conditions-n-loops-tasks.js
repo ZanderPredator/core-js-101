@@ -320,8 +320,18 @@ function isCreditCardNumber(ccn) {
       array[i] *= 2;
     }
   }
+  const changeArray = [];
 
-  const result = array.reduce((digit, current) => digit + Number(current), 0);
+  array.forEach((item) => {
+    if (item.toString().length === 1) {
+      changeArray.push(item);
+    } else if (item.toString().length === 2) {
+      changeArray.push(item.toString()[0]);
+      changeArray.push(item.toString()[1]);
+    }
+  });
+
+  const result = changeArray.reduce((digit, current) => digit + Number(current), 0);
 
   const formula = ((array.length) - Math.ceil(result / (array.length)));
 
@@ -345,9 +355,18 @@ function isCreditCardNumber(ccn) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
+function getDigitalRoot(num) {
+  const result = Array.from(num.toString());
+  let count = 0;
+  for (let i = 0; i < result.length; i += 1) {
+    count += Number(result[i]);
+  }
 
 
+  if (count.toString().length === 1) {
+    return count;
+  }
+  return (Math.floor(count / 10) + (count % 10));
 }
 
 
@@ -372,8 +391,21 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
+function isBracketsBalanced(str) {
+  const map = new Map();
+  map.set('(', ')');
+  map.set('{', '}');
+  map.set('[', ']');
+  map.set('|', '|');
+  map.set('<', '>');
 
+  if (str.startsWith(')') || str.startsWith('}') || str.startsWith(']') || str.startsWith('>')) {
+    return false;
+  } if (str.endsWith('(') || str.endsWith('{') || str.endsWith('[') || str.endsWith('<')) {
+    return false;
+  } if (str.length % 2 !== 0) {
+    return false;
+  }
 
 }
 
