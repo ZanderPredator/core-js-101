@@ -391,21 +391,7 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(str) {
-  const map = new Map();
-  map.set('(', ')');
-  map.set('{', '}');
-  map.set('[', ']');
-  map.set('|', '|');
-  map.set('<', '>');
-
-  if (str.startsWith(')') || str.startsWith('}') || str.startsWith(']') || str.startsWith('>')) {
-    return false;
-  } if (str.endsWith('(') || str.endsWith('{') || str.endsWith('[') || str.endsWith('<')) {
-    return false;
-  } if (str.length % 2 !== 0) {
-    return false;
-  }
+function isBracketsBalanced(/* str */) {
 
 }
 
